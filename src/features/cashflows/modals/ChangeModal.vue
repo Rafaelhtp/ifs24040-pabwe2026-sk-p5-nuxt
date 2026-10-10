@@ -59,13 +59,13 @@ async function onSubmit() {
 
       <div class="grid grid-cols-2 gap-4">
         <div>
-          <label for="change-type" class="mb-1 block text-xs font-bold uppercase text-slate-500">Jenis</label>
+          <label for="change-type" class="mb-1 block text-xs font-bold uppercase text-slate-600">Jenis</label>
           <select id="change-type" v-model="form.type" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm">
             <option v-for="(text, value) in TYPE_LABELS" :key="value" :value="value">{{ text }}</option>
           </select>
         </div>
         <div>
-          <label for="change-source" class="mb-1 block text-xs font-bold uppercase text-slate-500">Sumber Dana</label>
+          <label for="change-source" class="mb-1 block text-xs font-bold uppercase text-slate-600">Sumber Dana</label>
           <select id="change-source" v-model="form.source" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm">
             <option v-for="(text, value) in SOURCE_LABELS" :key="value" :value="value">{{ text }}</option>
           </select>
@@ -73,7 +73,7 @@ async function onSubmit() {
       </div>
 
       <div>
-        <label for="change-label" class="mb-1 block text-xs font-bold uppercase text-slate-500">Label</label>
+        <label for="change-label" class="mb-1 block text-xs font-bold uppercase text-slate-600">Label</label>
         <input
           id="change-label"
           v-model="form.label"
@@ -86,7 +86,7 @@ async function onSubmit() {
       </div>
 
       <div>
-        <label for="change-nominal" class="mb-1 block text-xs font-bold uppercase text-slate-500">Nominal (Rp)</label>
+        <label for="change-nominal" class="mb-1 block text-xs font-bold uppercase text-slate-600">Nominal (Rp)</label>
         <input
           id="change-nominal"
           v-model.number="form.nominal"
@@ -96,7 +96,7 @@ async function onSubmit() {
       </div>
 
       <div>
-        <label for="change-description" class="mb-1 block text-xs font-bold uppercase text-slate-500">Keterangan</label>
+        <label for="change-description" class="mb-1 block text-xs font-bold uppercase text-slate-600">Keterangan</label>
         <textarea
           id="change-description"
           v-model="form.description"
@@ -113,7 +113,7 @@ async function onSubmit() {
         <button
           type="submit"
           :disabled="store.isCashFlowChange"
-          class="rounded-xl bg-teal-600 px-4 py-2 text-sm font-bold text-white disabled:opacity-60">
+          class="rounded-xl bg-teal-700 px-4 py-2 text-sm font-bold text-white disabled:opacity-60">
           {{ store.isCashFlowChange ? "Menyimpan..." : "Simpan Perubahan" }}
         </button>
       </div>

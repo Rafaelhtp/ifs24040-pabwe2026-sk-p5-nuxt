@@ -38,9 +38,9 @@ async function onSubmit() {
 <template>
   <form class="space-y-5" data-testid="register-form" @submit.prevent="onSubmit">
     <div>
-      <label for="name" class="mb-1 block text-xs font-bold uppercase tracking-wide text-slate-500">Nama Lengkap</label>
+      <label for="name" class="mb-1 block text-xs font-bold uppercase tracking-wide text-slate-600">Nama Lengkap</label>
       <div class="relative">
-        <User class="absolute left-3 top-3 h-4 w-4 text-slate-500" />
+        <User class="absolute left-3 top-3 h-4 w-4 text-slate-600" />
         <input
           id="name"
           type="text"
@@ -52,9 +52,9 @@ async function onSubmit() {
     </div>
 
     <div>
-      <label for="email" class="mb-1 block text-xs font-bold uppercase tracking-wide text-slate-500">Alamat Email</label>
+      <label for="email" class="mb-1 block text-xs font-bold uppercase tracking-wide text-slate-600">Alamat Email</label>
       <div class="relative">
-        <Mail class="absolute left-3 top-3 h-4 w-4 text-slate-500" />
+        <Mail class="absolute left-3 top-3 h-4 w-4 text-slate-600" />
         <input
           id="email"
           type="email"
@@ -66,9 +66,9 @@ async function onSubmit() {
     </div>
 
     <div>
-      <label for="password" class="mb-1 block text-xs font-bold uppercase tracking-wide text-slate-500">Kata Sandi</label>
+      <label for="password" class="mb-1 block text-xs font-bold uppercase tracking-wide text-slate-600">Kata Sandi</label>
       <div class="relative">
-        <Lock class="absolute left-3 top-3 h-4 w-4 text-slate-500" />
+        <Lock class="absolute left-3 top-3 h-4 w-4 text-slate-600" />
         <input
           id="password"
           type="password"
@@ -84,7 +84,7 @@ async function onSubmit() {
     <button
       type="submit"
       :disabled="authStore.isAuthRegister"
-      class="flex w-full items-center justify-center gap-2 rounded-xl bg-teal-600 py-3 text-sm font-bold text-white shadow-lg hover:bg-teal-700 disabled:opacity-60">
+      class="flex w-full items-center justify-center gap-2 rounded-xl bg-teal-700 py-3 text-sm font-bold text-white shadow-lg hover:bg-teal-800 disabled:opacity-60">
       <UserPlus class="h-4 w-4" />
       {{ authStore.isAuthRegister ? "Memproses..." : "Daftar Sekarang" }}
     </button>

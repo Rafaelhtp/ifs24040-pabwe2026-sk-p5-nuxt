@@ -35,7 +35,7 @@ const menus = [
         v-for="menu in menus"
         :key="menu.to"
         :to="menu.to"
-        exact-active-class="bg-teal-600 text-white shadow-sm"
+        exact-active-class="bg-teal-700 text-white shadow-sm"
         class="flex items-center gap-3 rounded-full px-4 py-2.5 text-sm font-semibold text-slate-600 hover:bg-teal-50 hover:text-teal-700"
         @click="emit('close')">
         <component :is="menu.icon" class="h-4 w-4" />

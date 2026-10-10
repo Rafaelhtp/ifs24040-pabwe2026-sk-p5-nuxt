@@ -65,7 +65,7 @@ async function onSubmitPassword() {
   <section class="space-y-6">
     <header>
       <h1 class="text-2xl font-extrabold">Profil Saya</h1>
-      <p class="text-sm text-slate-500">Perbarui data akun, foto profil, dan kata sandimu.</p>
+      <p class="text-sm text-slate-600">Perbarui data akun, foto profil, dan kata sandimu.</p>
     </header>
 
     <div class="grid gap-6 lg:grid-cols-3">
@@ -76,14 +76,14 @@ async function onSubmitPassword() {
           :src="resolvePhotoUrl(usersStore.profile.photo)"
           alt="Foto profil"
           class="mx-auto h-28 w-28 rounded-full object-cover" />
-        <span v-else class="mx-auto flex h-28 w-28 items-center justify-center rounded-full bg-teal-100 text-teal-600">
+        <span v-else class="mx-auto flex h-28 w-28 items-center justify-center rounded-full bg-teal-100 text-teal-700">
           <UserRound class="h-12 w-12" />
         </span>
         <input type="file" accept="image/*" aria-label="Pilih foto profil" data-testid="photo-input" class="mt-4 block w-full text-sm" @change="onPhotoSelected" />
         <button
           type="submit"
           :disabled="!photoFile || usersStore.isPhotoChange"
-          class="mt-4 inline-flex items-center gap-2 rounded-xl bg-teal-600 px-4 py-2 text-sm font-bold text-white disabled:opacity-50">
+          class="mt-4 inline-flex items-center gap-2 rounded-xl bg-teal-700 px-4 py-2 text-sm font-bold text-white disabled:opacity-50">
           <Camera class="h-4 w-4" /> Ganti Foto
         </button>
       </form>
@@ -92,17 +92,17 @@ async function onSubmitPassword() {
       <form class="space-y-4 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-100" data-testid="profile-form" @submit.prevent="onSubmitProfile">
         <h2 class="font-bold">Informasi Akun</h2>
         <div>
-          <label for="profile-name" class="mb-1 block text-xs font-bold uppercase text-slate-500">Nama</label>
+          <label for="profile-name" class="mb-1 block text-xs font-bold uppercase text-slate-600">Nama</label>
           <input id="profile-name" type="text" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm" :value="name" @input="onNameChange" />
         </div>
         <div>
-          <label for="profile-email" class="mb-1 block text-xs font-bold uppercase text-slate-500">Email</label>
+          <label for="profile-email" class="mb-1 block text-xs font-bold uppercase text-slate-600">Email</label>
           <input id="profile-email" type="email" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm" :value="email" @input="onEmailChange" />
         </div>
         <button
           type="submit"
           :disabled="usersStore.isProfileChange"
-          class="inline-flex items-center gap-2 rounded-xl bg-teal-600 px-4 py-2 text-sm font-bold text-white disabled:opacity-50">
+          class="inline-flex items-center gap-2 rounded-xl bg-teal-700 px-4 py-2 text-sm font-bold text-white disabled:opacity-50">
           <Save class="h-4 w-4" /> Simpan
         </button>
       </form>
@@ -116,7 +116,7 @@ async function onSubmitPassword() {
         <button
           type="submit"
           :disabled="usersStore.isPasswordChange"
-          class="inline-flex items-center gap-2 rounded-xl bg-teal-600 px-4 py-2 text-sm font-bold text-white disabled:opacity-50">
+          class="inline-flex items-center gap-2 rounded-xl bg-teal-700 px-4 py-2 text-sm font-bold text-white disabled:opacity-50">
           <KeyRound class="h-4 w-4" /> Ubah Kata Sandi
         </button>
       </form>

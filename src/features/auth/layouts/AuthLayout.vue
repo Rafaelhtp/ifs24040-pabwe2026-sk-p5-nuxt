@@ -55,7 +55,7 @@ const highlights = [
             <CircleDollarSign class="h-7 w-7" />
           </div>
           <h1 class="text-3xl font-extrabold tracking-tight text-slate-900">Delcom Cash Flow</h1>
-          <p class="mt-1 text-sm text-slate-500">Catat arus kas pribadimu dengan mudah</p>
+          <p class="mt-1 text-sm text-slate-600">Catat arus kas pribadimu dengan mudah</p>
         </div>
 
         <div class="rounded-3xl bg-white p-6 shadow-xl ring-1 ring-stone-200 sm:p-8">
@@ -64,14 +64,14 @@ const highlights = [
               to="/auth/login"
               data-testid="tab-login"
               class="rounded-full py-2 text-slate-600"
-              active-class="bg-teal-600 text-white shadow">
+              active-class="bg-teal-700 text-white shadow">
               Masuk
             </RouterLink>
             <RouterLink
               to="/auth/register"
               data-testid="tab-register"
               class="rounded-full py-2 text-slate-600"
-              active-class="bg-teal-600 text-white shadow">
+              active-class="bg-teal-700 text-white shadow">
               Buat Akun
             </RouterLink>
           </nav>

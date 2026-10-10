@@ -43,7 +43,7 @@ export async function showConfirmDialog(title: string, text: string): Promise<bo
     showCancelButton: true,
     confirmButtonText: "Ya, lanjutkan",
     cancelButtonText: "Batal",
-    confirmButtonColor: "#0d9488",
+    confirmButtonColor: "#0f766e",
   });
   return result.isConfirmed;
 }

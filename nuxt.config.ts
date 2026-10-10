@@ -58,6 +58,8 @@ export default defineNuxtConfig({
 
   nitro: {
     devPort: customPort,
+    // Kompres aset publik (JS/CSS/HTML) saat build; server menyajikan versi gzip/brotli sesuai Accept-Encoding.
+    compressPublicAssets: { gzip: true, brotli: true },
     hooks: {
       // Berlaku untuk HTML hasil prerender (200.html / index.html)
       "prerender:generate"(route) {

@@ -15,11 +15,11 @@ onMounted(() => {
   <section>
     <header class="mb-6">
       <h1 class="text-2xl font-extrabold">Direktori Pengguna</h1>
-      <p class="text-sm text-slate-500">Daftar semua pengguna yang terdaftar di Delcom Open API.</p>
+      <p class="text-sm text-slate-600">Daftar semua pengguna yang terdaftar di Delcom Open API.</p>
     </header>
 
-    <p v-if="usersStore.isUsers" data-testid="users-loading" class="text-slate-500">Memuat data pengguna...</p>
-    <p v-else-if="usersStore.users.length === 0" data-testid="users-empty" class="text-slate-500">
+    <p v-if="usersStore.isUsers" data-testid="users-loading" class="text-slate-600">Memuat data pengguna...</p>
+    <p v-else-if="usersStore.users.length === 0" data-testid="users-empty" class="text-slate-600">
       Belum ada pengguna.
     </p>
 
@@ -37,12 +37,12 @@ onMounted(() => {
           loading="lazy"
           decoding="async"
           class="h-12 w-12 rounded-full object-cover" />
-        <span v-else class="flex h-12 w-12 items-center justify-center rounded-full bg-teal-100 text-teal-600">
+        <span v-else class="flex h-12 w-12 items-center justify-center rounded-full bg-teal-100 text-teal-700">
           <UserRound class="h-6 w-6" />
         </span>
         <div class="min-w-0">
           <p class="truncate font-semibold">{{ user.name }}</p>
-          <p class="truncate text-sm text-slate-500">{{ user.email }}</p>
+          <p class="truncate text-sm text-slate-600">{{ user.email }}</p>
         </div>
       </li>
     </ul>

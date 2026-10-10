@@ -32,9 +32,9 @@ async function onSubmit() {
 <template>
   <form class="space-y-5" data-testid="login-form" @submit.prevent="onSubmit">
     <div>
-      <label for="login-email-input" class="mb-1 block text-xs font-bold uppercase tracking-wide text-slate-500">Alamat Email</label>
+      <label for="login-email-input" class="mb-1 block text-xs font-bold uppercase tracking-wide text-slate-600">Alamat Email</label>
       <div class="relative">
-        <Mail class="absolute left-3 top-3 h-4 w-4 text-slate-500" />
+        <Mail class="absolute left-3 top-3 h-4 w-4 text-slate-600" />
         <input
           id="login-email-input"
           name="email"
@@ -48,9 +48,9 @@ async function onSubmit() {
     </div>
 
     <div>
-      <label for="login-password-input" class="mb-1 block text-xs font-bold uppercase tracking-wide text-slate-500">Kata Sandi</label>
+      <label for="login-password-input" class="mb-1 block text-xs font-bold uppercase tracking-wide text-slate-600">Kata Sandi</label>
       <div class="relative">
-        <Lock class="absolute left-3 top-3 h-4 w-4 text-slate-500" />
+        <Lock class="absolute left-3 top-3 h-4 w-4 text-slate-600" />
         <input
           id="login-password-input"
           name="password"
@@ -69,7 +69,7 @@ async function onSubmit() {
       id="login-submit-button"
       type="submit"
       :disabled="authStore.isAuthLogin"
-      class="flex w-full items-center justify-center gap-2 rounded-xl bg-teal-600 py-3 text-sm font-bold text-white shadow-lg hover:bg-teal-700 disabled:opacity-60">
+      class="flex w-full items-center justify-center gap-2 rounded-xl bg-teal-700 py-3 text-sm font-bold text-white shadow-lg hover:bg-teal-800 disabled:opacity-60">
       <LogIn class="h-4 w-4" />
       {{ authStore.isAuthLogin ? "Memproses..." : "Masuk" }}
     </button>

@@ -85,13 +85,13 @@ async function onDeleteAll() {
     <header class="flex flex-wrap items-center justify-between gap-3">
       <div>
         <h1 class="text-2xl font-extrabold">Ringkasan Arus Kas</h1>
-        <p class="text-sm text-slate-500">Semua catatan keuanganmu dalam satu tempat.</p>
+        <p class="text-sm text-slate-600">Semua catatan keuanganmu dalam satu tempat.</p>
       </div>
       <div class="flex gap-2">
         <button
           type="button"
           data-testid="btn-add"
-          class="inline-flex items-center gap-2 rounded-xl bg-teal-600 px-4 py-2 text-sm font-bold text-white"
+          class="inline-flex items-center gap-2 rounded-xl bg-teal-700 px-4 py-2 text-sm font-bold text-white"
           @click="showAdd = true">
           <Plus class="h-4 w-4" /> Tambah Transaksi
         </button>
@@ -113,7 +113,7 @@ async function onDeleteAll() {
         :key="card.key"
         :data-testid="`card-${card.key}`"
         class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-100">
-        <p class="text-xs font-bold uppercase tracking-wide text-slate-500">{{ card.title }}</p>
+        <p class="text-xs font-bold uppercase tracking-wide text-slate-600">{{ card.title }}</p>
         <p class="mt-2 text-2xl font-extrabold">{{ formatRupiah(card.value) }}</p>
       </div>
     </div>
@@ -148,8 +148,8 @@ async function onDeleteAll() {
     </form>
 
     <!-- Daftar transaksi -->
-    <p v-if="store.isCashFlow" data-testid="cashflow-loading" class="text-slate-500">Memuat transaksi...</p>
-    <p v-else-if="store.cashFlows.length === 0" data-testid="cashflow-empty" class="rounded-2xl bg-white p-8 text-center text-slate-500">
+    <p v-if="store.isCashFlow" data-testid="cashflow-loading" class="text-slate-600">Memuat transaksi...</p>
+    <p v-else-if="store.cashFlows.length === 0" data-testid="cashflow-empty" class="rounded-2xl bg-white p-8 text-center text-slate-600">
       Belum ada transaksi.
     </p>
 
@@ -167,10 +167,10 @@ async function onDeleteAll() {
               :class="item.type === 'inflow' ? 'bg-emerald-50 text-emerald-700' : 'bg-rose-50 text-rose-700'">
               {{ TYPE_LABELS[item.type] }}
             </span>
-            <span class="text-xs text-slate-500">{{ SOURCE_LABELS[item.source] }} · {{ item.label }}</span>
+            <span class="text-xs text-slate-600">{{ SOURCE_LABELS[item.source] }} · {{ item.label }}</span>
           </div>
           <p class="mt-1 truncate text-sm text-slate-600">{{ item.description }}</p>
-          <p class="text-xs text-slate-500">{{ formatDate(item.created_at) }}</p>
+          <p class="text-xs text-slate-600">{{ formatDate(item.created_at) }}</p>
         </div>
 
         <div class="flex items-center gap-3">
