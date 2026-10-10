@@ -25,7 +25,11 @@ export function putAccessToken(token: string | null): void {
   }
 }
 
-export function buildUrl(path: string, query: Record<string, unknown> = {}): string {
+export function buildUrl(
+  path: string,
+  query: Record<string, unknown> = {},
+  baseUrl: string = DELCOM_BASEURL
+): string {
   const params = new URLSearchParams();
   Object.entries(query).forEach(([key, value]) => {
     if (value === undefined || value === null || value === "") {
@@ -34,7 +38,7 @@ export function buildUrl(path: string, query: Record<string, unknown> = {}): str
     params.append(key, String(value));
   });
   const queryString = params.toString();
-  const url = `${DELCOM_BASEURL}${path}`;
+  const url = `${baseUrl}${path}`;
   return queryString ? `${url}?${queryString}` : url;
 }
 
@@ -62,12 +66,15 @@ export async function apiRequest<T = any>(
     payload = JSON.stringify(body);
   }
 
+  const init: RequestInit = { method, headers, body: payload };
+
   try {
-    const response = await fetch(buildUrl(path, query), {
-      method,
-      headers,
-      body: payload,
-    });
+    let response = await fetch(buildUrl(path, query), init);
+    // Proxy same-origin menjawab 502 bila server hosting tidak bisa menjangkau Delcom.
+    // Request belum sampai ke Delcom, jadi aman diulang langsung dari browser.
+    if (response.status >= 502 && DELCOM_BASEURL !== DELCOM_DIRECT_BASEURL) {
+      response = await fetch(buildUrl(path, query, DELCOM_DIRECT_BASEURL), init);
+    }
     return (await response.json()) as ApiResult<T>;
   } catch (error) {
     return { status: "error", message: (error as Error).message };

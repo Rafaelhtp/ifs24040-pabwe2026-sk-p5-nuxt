@@ -17,7 +17,8 @@ export default defineConfig(({ mode }) => {
       port,
     },
     define: {
-      DELCOM_BASEURL: JSON.stringify(
+      DELCOM_BASEURL: JSON.stringify("/api/delcom"),
+      DELCOM_DIRECT_BASEURL: JSON.stringify(
         env.VITE_DELCOM_BASEURL || "https://open-api.delcom.org/api/v1"
       ),
       DELCOM_ORIGIN: JSON.stringify(

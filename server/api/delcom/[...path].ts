@@ -13,6 +13,8 @@ export default defineEventHandler(async (event) => {
   try {
     return await proxyRequest(event, `${upstream}/${path}${search}`);
   } catch (error) {
+    const cause = (error as { cause?: { code?: string; message?: string } }).cause;
+    console.error("[delcom-proxy] gagal menjangkau", upstream, "-", cause?.code || cause?.message || (error as Error).message);
     setResponseStatus(event, 502);
     return { status: "error", message: `Gagal menghubungi server Delcom: ${(error as Error).message}` };
   }

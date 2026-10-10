@@ -3,6 +3,7 @@
 // Konstanta global hasil injeksi `define` dari nuxt.config.ts / vite.config.ts
 declare const DELCOM_BASEURL: string;
 declare const DELCOM_ORIGIN: string;
+declare const DELCOM_DIRECT_BASEURL: string;
 
 declare module "*.vue" {
   import type { DefineComponent } from "vue";

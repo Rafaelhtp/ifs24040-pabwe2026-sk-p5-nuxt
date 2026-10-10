@@ -40,6 +40,7 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
     define: {
       DELCOM_BASEURL: JSON.stringify(useDirectApi ? delcomBaseUrl : "/api/delcom"),
+      DELCOM_DIRECT_BASEURL: JSON.stringify(delcomBaseUrl),
       DELCOM_ORIGIN: JSON.stringify(new URL(delcomBaseUrl).origin),
     },
   },
