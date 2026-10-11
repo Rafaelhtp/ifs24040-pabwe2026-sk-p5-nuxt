@@ -13,9 +13,17 @@ export default defineEventHandler(async (event) => {
   try {
     return await proxyRequest(event, `${upstream}/${path}${search}`);
   } catch (error) {
-    const cause = (error as { cause?: { code?: string; message?: string } }).cause;
+    // Penyebab asli (mis. ENOTFOUND, ECONNREFUSED, ETIMEDOUT) ada di rantai error.cause.cause.
+    type Err = { cause?: Err; code?: string; message?: string };
+    const outer = (error as Err).cause;
+    const cause = outer?.cause ?? outer;
     console.error("[delcom-proxy] gagal menjangkau", upstream, "-", cause?.code || cause?.message || (error as Error).message);
     setResponseStatus(event, 502);
-    return { status: "error", message: `Gagal menghubungi server Delcom: ${(error as Error).message}` };
+    return {
+      status: "error",
+      message: `Gagal menghubungi server Delcom: ${(error as Error).message}`,
+      // Rincian penyebab (membantu diagnosa hosting): kode error jaringan dan URL tujuan.
+      detail: { upstream, code: cause?.code, cause: cause?.message },
+    };
   }
 });
