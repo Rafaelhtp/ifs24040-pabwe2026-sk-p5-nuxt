@@ -44,6 +44,15 @@ export default defineNuxtConfig({
       DELCOM_PROXY_BASEURL: JSON.stringify("/api/delcom"),
       DELCOM_ORIGIN: JSON.stringify(new URL(delcomBaseUrl).origin),
     },
+    build: {
+      rollupOptions: {
+        output: {
+          // Server hosting memakai HTTP/1.1 (maks. ~6 koneksi paralel), jadi puluhan chunk kecil justru
+          // memperlambat muat awal. Semua kode digabung ke satu chunk agar jumlah request minimal.
+          manualChunks: () => "app",
+        },
+      },
+    },
   },
 
   devServer: {
