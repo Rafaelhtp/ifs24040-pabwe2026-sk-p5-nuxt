@@ -101,10 +101,10 @@ describe("apiRequest", () => {
     expect(result).toEqual({ status: "error", message: "Network down" });
   });
 
-  it("should retry directly to Delcom when the proxy answers 502", async () => {
+  it("should fall back to the same-origin proxy when the direct request fails", async () => {
     putAccessToken("token-1");
     fetchMock
-      .mockResolvedValueOnce({ status: 502, json: async () => ({ status: "error", message: "Bad Gateway" }) })
+      .mockRejectedValueOnce(new TypeError("Failed to fetch"))
       .mockResolvedValueOnce({ status: 200, json: async () => ({ status: "success", message: "ok" }) });
 
     const result = await apiRequest("/auth/login", { method: "POST", body: { email: "a" } });
@@ -112,14 +112,14 @@ describe("apiRequest", () => {
     expect(result).toEqual({ status: "success", message: "ok" });
     expect(fetchMock).toHaveBeenCalledTimes(2);
     expect(fetchMock.mock.calls[0][0]).toBe(`${DELCOM_BASEURL}/auth/login`);
-    expect(fetchMock.mock.calls[1][0]).toBe(`${DELCOM_DIRECT_BASEURL}/auth/login`);
+    expect(fetchMock.mock.calls[1][0]).toBe(`${DELCOM_PROXY_BASEURL}/auth/login`);
     expect(fetchMock.mock.calls[1][1].body).toBe(JSON.stringify({ email: "a" }));
   });
 
-  it("should not retry when the response is not a gateway error", async () => {
-    fetchMock.mockResolvedValue({ status: 401, json: async () => ({ status: "fail", message: "salah" }) });
+  it("should not retry when Delcom answers with an error status", async () => {
+    fetchMock.mockResolvedValue({ status: 502, json: async () => ({ status: "error", message: "Bad Gateway" }) });
     const result = await apiRequest("/auth/login", { method: "POST", body: {} });
-    expect(result).toEqual({ status: "fail", message: "salah" });
+    expect(result).toEqual({ status: "error", message: "Bad Gateway" });
     expect(fetchMock).toHaveBeenCalledTimes(1);
   });
 });

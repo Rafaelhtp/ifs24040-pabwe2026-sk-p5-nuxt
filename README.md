@@ -31,6 +31,6 @@ bun run test:coverage    # vitest + laporan coverage (ambang 100%)
 
 ## Catatan Teknis
 
-- Permintaan API dari browser dilewatkan proxy same-origin `/api/delcom/**` (`server/api/delcom/[...path].ts`) menuju `VITE_DELCOM_BASEURL`, supaya terhindar dari masalah CORS di server Delcom. Set `VITE_DELCOM_DIRECT=true` lalu build ulang jika ingin memanggil API secara langsung.
+- Browser memanggil API Delcom secara langsung (`VITE_DELCOM_BASEURL`). Jika gagal (mis. diblokir CORS atau jaringan), request otomatis diulang lewat proxy same-origin `/api/delcom/**` (`server/api/delcom/[...path].ts`). Set `VITE_DELCOM_PROXY=true` lalu build ulang jika proxy ingin dijadikan jalur utama.
 - Ganti kata sandi memakai endpoint `PUT /users/password` sesuai dokumentasi Delcom.
 - Proteksi rute dilakukan di `CashFlowLayout.vue` dan `AuthLayout.vue`.

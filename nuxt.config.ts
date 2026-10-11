@@ -6,9 +6,10 @@ const customPort = Number(process.env.APP_PORT || process.env.PORT) || 3000;
 
 const delcomBaseUrl = process.env.VITE_DELCOM_BASEURL || "https://open-api.delcom.org/api/v1";
 
-// Request API dari browser dialirkan lewat proxy same-origin (server/api/delcom/[...path].ts).
-// Isi VITE_DELCOM_DIRECT=true lalu build ulang bila ingin menghubungi Delcom tanpa proxy.
-const useDirectApi = process.env.VITE_DELCOM_DIRECT === "true";
+// Browser memanggil Delcom langsung. Bila gagal (CORS/jaringan), request otomatis diulang lewat
+// proxy same-origin (server/api/delcom/[...path].ts). Isi VITE_DELCOM_PROXY=true lalu build ulang
+// bila proxy ingin dijadikan jalur utama.
+const useProxyFirst = process.env.VITE_DELCOM_PROXY === "true";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -39,8 +40,8 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
     define: {
-      DELCOM_BASEURL: JSON.stringify(useDirectApi ? delcomBaseUrl : "/api/delcom"),
-      DELCOM_DIRECT_BASEURL: JSON.stringify(delcomBaseUrl),
+      DELCOM_BASEURL: JSON.stringify(useProxyFirst ? "/api/delcom" : delcomBaseUrl),
+      DELCOM_PROXY_BASEURL: JSON.stringify("/api/delcom"),
       DELCOM_ORIGIN: JSON.stringify(new URL(delcomBaseUrl).origin),
     },
   },

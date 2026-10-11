@@ -69,11 +69,12 @@ export async function apiRequest<T = any>(
   const init: RequestInit = { method, headers, body: payload };
 
   try {
-    let response = await fetch(buildUrl(path, query), init);
-    // Proxy same-origin menjawab 502 bila server hosting tidak bisa menjangkau Delcom.
-    // Request belum sampai ke Delcom, jadi aman diulang langsung dari browser.
-    if (response.status >= 502 && DELCOM_BASEURL !== DELCOM_DIRECT_BASEURL) {
-      response = await fetch(buildUrl(path, query, DELCOM_DIRECT_BASEURL), init);
+    let response: Response;
+    try {
+      response = await fetch(buildUrl(path, query), init);
+    } catch {
+      // Jalur utama gagal total (diblokir CORS / jaringan): ulangi lewat proxy same-origin.
+      response = await fetch(buildUrl(path, query, DELCOM_PROXY_BASEURL), init);
     }
     return (await response.json()) as ApiResult<T>;
   } catch (error) {
